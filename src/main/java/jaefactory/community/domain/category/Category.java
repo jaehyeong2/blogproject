@@ -2,10 +2,13 @@ package jaefactory.community.domain.category;
 
 
 import jaefactory.community.domain.board.Board;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Getter @Setter
 @Entity
 public class Category {
 
