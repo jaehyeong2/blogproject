@@ -3,9 +3,12 @@ package jaefactory.community.domain.reply;
 
 import jaefactory.community.domain.board.Board;
 import jaefactory.community.domain.user.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter @Setter
 @Entity
 public class Reply {
 

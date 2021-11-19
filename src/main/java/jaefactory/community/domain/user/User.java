@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -36,7 +37,7 @@ public class User {
     private LocalDateTime createDate;
 
     @OneToMany(mappedBy = "user")
-    private List<Board> boardList;
+    private List<Board> boardList = new ArrayList<>();
 
     @PrePersist
     public void createDate() { this.createDate = LocalDateTime.now();}

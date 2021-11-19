@@ -3,11 +3,13 @@ package jaefactory.community.service;
 
 import jaefactory.community.domain.board.Board;
 import jaefactory.community.domain.board.BoardRepository;
+import jaefactory.community.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,7 +23,9 @@ public class BoardService {
     }
 
     @Transactional
-    public void addBoard(Board board) {
+    public void addBoard(Board board, User user) {
+        board.setViewCount(0);
+        board.setUser(user);
         boardRepository.save(board);
     }
 
@@ -30,5 +34,8 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
-
+    @Transactional(readOnly = true)
+    public Optional<Board> getBoardById(long id){
+        return boardRepository.findById(id);
+    }
 }

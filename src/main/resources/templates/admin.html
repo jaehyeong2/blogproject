@@ -9,7 +9,7 @@
     <title>Admin Home</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Categories</h4>
                     <p class="card-text">카테고리 설정하기</p>
-                    <a href="#" th:href="@{/admin/categories}" class="card-link btn btn-primary">Manage</a>
+                    <a href="#" th:href="@{/admin/categories}" class="card-link btn btn-dark">Manage</a>
 
                 </div>
             </div>
@@ -48,9 +48,9 @@
         <div class="col-sm-3 pt-3" >
             <div class="card" style="background-color:white;">
                 <div class="card-body">
-                    <h4 class="card-title">Products</h4>
-                    <p class="card-text">상품 수정/등록하기</p>
-                    <a href="#" th:href="@{/admin/products}" class="card-link btn btn-primary">Manage</a>
+                    <h4 class="card-title">Boards</h4>
+                    <p class="card-text">게시물 수정/삭제하기</p>
+                    <a href="#" th:href="@{/admin/boards}" class="card-link btn btn-dark">Manage</a>
 
                 </div>
             </div>

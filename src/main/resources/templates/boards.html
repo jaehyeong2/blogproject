@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin}" href="#">admin-home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/logout}" href="#">logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <a th:href="@{/admin/products/add}" style="margin: 20px 0" class="btn btn-primary">상품 추가하기</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">제품명</th>
+            <th scope="col">카테고리</th>
+            <th scope="col">미리보기</th>
+            <th scope="col">삭제하기</th>
+            <th scope="col">수정하기</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="board, iStat : ${boards}">
+            <th scope="row" th:text="${iStat.index + 1}"></th>
+            <td th:text="${board.name}"></td>
+            <td th:text="${board.category.name}"></td>
+<!--            <td><img src="" height="100px" width="100px"  th:src="@{${'/images/' + product.imageName}}"></td>-->
+<!--            <td><img src="" height="100px" width="100px"  th:src="@{${'/images/' + product.imageName}}"></td>-->
+            <td><a href="" th:href="@{/admin/board/delete/{id}(id=${board.id})}" class="btn btn-danger">삭제하기</a></td>
+            <td><a href="" th:href="@{/admin/board/update/{id}(id=${board.id})}" class="btn btn-warning">업데이트</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,15 +1,22 @@
 package jaefactory.community.controller;
 
+import jaefactory.community.config.auth.PrincipalDetails;
 import jaefactory.community.domain.user.User;
 import jaefactory.community.dto.SignUpDto;
 import jaefactory.community.handler.exception.CustomValidationException;
+import jaefactory.community.service.BoardService;
+import jaefactory.community.service.CategoryService;
 import jaefactory.community.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -22,37 +29,16 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final CategoryService categoryService;
+    private final BoardService boardService;
 
-    @GetMapping("/")
-    public String home(){
-        return "index";
+    @GetMapping("/user/{id}/update")
+    public String profile(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails){
+//        model.addAttribute("user",user);
+
+        return "profile";
     }
+}
 
-    @GetMapping("/signup")
-    public String signUpForm() {
-        return "signup";
-    }
 
-    @PostMapping("/signup")
-    public String signUp(@Valid SignUpDto signUpDto, BindingResult bindingResult){
-
-        if (bindingResult.hasErrors()){
-            Map<String,String> errorMap = new HashMap<>();
-
-            for(FieldError error:bindingResult.getFieldErrors()){
-                errorMap.put(error.getField(),error.getDefaultMessage());
-            }
-            throw new CustomValidationException("유효성 검사 실패",errorMap);
-        }else {
-            User user = signUpDto.toEntity();
-            User userEntity = userService.join(user);
-            return "signin";
-        }
-    }
-
-        @GetMapping("/signin")
-        public String signInForm() {
-            return "signin";
-        }
-    }
 

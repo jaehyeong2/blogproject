@@ -4,10 +4,14 @@ package jaefactory.community.domain.board;
 import jaefactory.community.domain.category.Category;
 import jaefactory.community.domain.reply.Reply;
 import jaefactory.community.domain.user.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Getter @Setter
 @Entity
 public class Board {
 
@@ -16,19 +20,21 @@ public class Board {
     @Column(name = "board_id")
     private Long id;
 
-    @JoinColumn(name = "user_id")
-    @ManyToOne
-    private User user;
+    private String title;
 
     @Lob //용량 큰 데이터
     private String content;
     
     private int viewCount; //조회수
 
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @JoinColumn(name = "category_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
     @OneToMany(mappedBy = "board")
-    private List<Reply> replies;
+    private List<Reply> replies = new ArrayList<>();
 }
