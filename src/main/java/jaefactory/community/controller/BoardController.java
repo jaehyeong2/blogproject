@@ -1,11 +1,13 @@
 package jaefactory.community.controller;
 
 
+import jaefactory.community.config.auth.PrincipalDetails;
 import jaefactory.community.domain.board.Board;
 import jaefactory.community.dto.BoardDto;
 import jaefactory.community.service.BoardService;
 import jaefactory.community.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,9 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping({"/","index"})
-    public String home(Model model) {
+    public String home(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         model.addAttribute("boards",boardService.getAllBoards());
+        model.addAttribute("user",principalDetails);
         return "index";
     }
 
@@ -36,8 +39,10 @@ public class BoardController {
     }
 
     @GetMapping("/board/detail/{id}")
-    public String boardDetail(@PathVariable int id,Model model) {
+    public String boardDetail(@PathVariable int id,Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         model.addAttribute("board",boardService.getBoardById(id));
+        model.addAttribute("user",principalDetails);
+
         return "boardDetails";
     }
 

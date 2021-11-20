@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta charset="UTF-8">
     <title>글쓰기</title>
@@ -32,15 +33,9 @@
     </div>
 </nav>
 <div class="container">
-    <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-
-<!--    <c:if test="${board.user.id == principal.user.id}">-->
-        <a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
-        <button id="btn-delete" class="btn btn-danger">삭제</button>
-<!--    </c:if>-->
     <br /> <br />
     <div>
-<!--        글 번호 : <span id="id"><i th:text="${board.id}"></i></span> 작성자 : <span><i th:text="${board.user.username} "></i></span>-->
+        글 번호 : <span id="id"><i th:text="${board.id}"></i></span> 작성자 : <span><i th:text="${board.user.username} "></i></span>
     </div>
     <br />
     <div>
@@ -63,6 +58,12 @@
                 <button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
             </div>
         </form>
+    </div>
+    <div>
+        <div sec:authentication th:if="${board.user.id == user.user.id}">
+            <a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
+            <button id="btn-delete" class="btn btn-danger">삭제</button>
+        </div>
     </div>
     <br />
     <div class="card">
