@@ -30,8 +30,12 @@
                     <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/signup}">회원가입</a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/board/add}" >글쓰기</a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
                 </li>
+
 <!--                <li class="nav-item active">-->
 <!--                    &lt;!&ndash;                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/profile/{id}(id=${user.id})}">회원정보 수정</a>&ndash;&gt;-->
 <!--                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/${principal.getUsername()}}">회원정보</a>-->

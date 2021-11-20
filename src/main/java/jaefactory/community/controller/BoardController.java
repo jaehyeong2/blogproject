@@ -31,6 +31,7 @@ public class BoardController {
 
     @GetMapping("/board/add")
     public String addBoardGet(Model model){
+        model.addAttribute("boards",boardService.getAllBoards());
 //        model.addAttribute("boardDto",new BoardDto());
 //        model.addAttribute("board",new Board());
 //        model.addAttribute("categories",categoryService.getAllCategories());
@@ -38,7 +39,8 @@ public class BoardController {
     }
 
     @GetMapping("/board/detail/{id}")
-    public String boardDetail(@PathVariable int id) {
+    public String boardDetail(@PathVariable int id,Model model) {
+        model.addAttribute("board",boardService.getBoardById(id));
         return "boardDetails";
     }
 

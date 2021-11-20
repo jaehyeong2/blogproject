@@ -37,7 +37,7 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Board> getBoardById(int id){
-        return boardRepository.findById(id);
+    public Board getBoardById(int id){
+        return boardRepository.findById(id).orElseThrow();
     }
 }
