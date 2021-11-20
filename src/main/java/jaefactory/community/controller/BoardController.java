@@ -25,7 +25,7 @@ public class BoardController {
     @GetMapping({"/","index"})
     public String home(Model model) {
         model.addAttribute("categories",categoryService.getAllCategories());
-//        model.addAttribute("boards",boardService.getAllBoards());
+        model.addAttribute("boards",boardService.getAllBoards());
         return "index";
     }
 
@@ -35,6 +35,11 @@ public class BoardController {
 //        model.addAttribute("board",new Board());
 //        model.addAttribute("categories",categoryService.getAllCategories());
         return "boardAdd";
+    }
+
+    @GetMapping("/board/detail/{id}")
+    public String boardDetail(@PathVariable int id) {
+        return "boardDetails";
     }
 
 //    @PostMapping("/board/add")
