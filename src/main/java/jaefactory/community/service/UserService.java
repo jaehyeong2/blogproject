@@ -4,6 +4,8 @@ package jaefactory.community.service;
 import jaefactory.community.domain.category.Category;
 import jaefactory.community.domain.user.User;
 import jaefactory.community.domain.user.UserRepository;
+import jaefactory.community.dto.UserProfileDto;
+import jaefactory.community.handler.exception.CustomValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,15 +20,16 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Transactional
-    public User join(User user){
-        String rawPassword = user.getPassword();
-        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+    @Transactional(readOnly = true)
+    public UserProfileDto userProfile(long pageUserId, long principalId) {
+        UserProfileDto dto = new UserProfileDto();
 
-        user.setPassword(encPassword);
-        user.setRole("Role_USER");
-        User userEntity = userRepository.save(user);
-        return userEntity;
+        User userEntity = userRepository.findById(pageUserId).get();
+
+        dto.setUser(userEntity);
+        dto.setPageOwnerState(pageUserId == principalId);
+
+        return dto;
     }
 
     @Transactional(readOnly = true)

@@ -32,8 +32,8 @@ public class BoardController {
     @GetMapping("/board/add")
     public String addBoardGet(Model model){
 //        model.addAttribute("boardDto",new BoardDto());
-        model.addAttribute("board",new Board());
-        model.addAttribute("categories",categoryService.getAllCategories());
+//        model.addAttribute("board",new Board());
+//        model.addAttribute("categories",categoryService.getAllCategories());
         return "boardAdd";
     }
 

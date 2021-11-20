@@ -3,6 +3,7 @@ package jaefactory.community.controller;
 import jaefactory.community.config.auth.PrincipalDetails;
 import jaefactory.community.domain.user.User;
 import jaefactory.community.dto.SignUpDto;
+import jaefactory.community.dto.UserProfileDto;
 import jaefactory.community.handler.exception.CustomValidationException;
 import jaefactory.community.service.BoardService;
 import jaefactory.community.service.CategoryService;
@@ -32,10 +33,14 @@ public class UserController {
     private final CategoryService categoryService;
     private final BoardService boardService;
 
-    @GetMapping("/user/{id}/update")
-    public String profile(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails){
-//        model.addAttribute("user",user);
+    @GetMapping("/user/{id}")
+    public String profile(@PathVariable long id){
+        return "profile";
+    }
 
+    @GetMapping("/user/{id}/update")
+    public String profileUpdate(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
+        model.addAttribute("principal",principalDetails.getUser());
         return "profile";
     }
 }

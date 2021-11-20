@@ -32,6 +32,7 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
+
     public Category getCategoryById(long id){
         return categoryRepository.getById(id);
     }

@@ -19,10 +19,10 @@ public class BoardApiController {
     private final CategoryService categoryService;
 
     @PostMapping("/api/board")
-    public CommonResDto<?> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetails principal){
-        board.setCategory(categoryService.getCategoryById(board.getId()));
+    public BoardDto<?> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetails principal){
+//        board.setCategory(categoryService.getCategoryById(board.getId()));
         boardService.addBoard(board,principal.getUser());
-        return new CommonResDto<Integer>(1,"글쓰기 완료",1);
+        return new BoardDto<Integer>(1,1);
     }
 
 //    @PostMapping("/board/add")

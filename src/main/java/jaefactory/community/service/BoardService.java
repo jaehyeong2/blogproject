@@ -16,6 +16,7 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final CategoryService categoryService;
 
     @Transactional(readOnly = true)
     public List<Board> getAllBoards(){
@@ -24,18 +25,19 @@ public class BoardService {
 
     @Transactional
     public void addBoard(Board board, User user) {
+//        board.setCategory(categoryService.getCategoryById(board.getId()));
         board.setViewCount(0);
         board.setUser(user);
         boardRepository.save(board);
     }
 
     @Transactional
-    public void deleteBoardById(long id){
+    public void deleteBoardById(int id){
         boardRepository.deleteById(id);
     }
 
     @Transactional(readOnly = true)
-    public Optional<Board> getBoardById(long id){
+    public Optional<Board> getBoardById(int id){
         return boardRepository.findById(id);
     }
 }

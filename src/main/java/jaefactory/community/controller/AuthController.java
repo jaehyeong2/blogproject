@@ -3,6 +3,7 @@ package jaefactory.community.controller;
 import jaefactory.community.domain.user.User;
 import jaefactory.community.dto.SignUpDto;
 import jaefactory.community.handler.exception.CustomValidationException;
+import jaefactory.community.service.AuthService;
 import jaefactory.community.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import java.util.Map;
 @Controller
 public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authService;
 
     @GetMapping("/signup")
     public String signUpForm() {
@@ -43,7 +44,7 @@ public class AuthController {
             throw new CustomValidationException("유효성 검사 실패", errorMap);
         } else {
             User user = signUpDto.toEntity();
-            User userEntity = userService.join(user);
+            User userEntity = authService.join(user);
             return "signin";
         }
     }

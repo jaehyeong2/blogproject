@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +27,19 @@ public class Board {
     private String content;
     
     private int viewCount; //조회수
+    private LocalDateTime createDate;
 
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @JoinColumn(name = "category_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
+//    @JoinColumn(name = "category_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Category category;
 
     @OneToMany(mappedBy = "board")
     private List<Reply> replies = new ArrayList<>();
+
+    @PrePersist
+    public void createDate() { this.createDate = LocalDateTime.now();}
 }
