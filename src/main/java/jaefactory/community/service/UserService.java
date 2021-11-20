@@ -1,7 +1,5 @@
 package jaefactory.community.service;
 
-
-import jaefactory.community.domain.category.Category;
 import jaefactory.community.domain.user.User;
 import jaefactory.community.domain.user.UserRepository;
 import jaefactory.community.dto.UserProfileDto;

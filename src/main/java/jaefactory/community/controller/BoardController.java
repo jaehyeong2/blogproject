@@ -4,7 +4,6 @@ package jaefactory.community.controller;
 import jaefactory.community.domain.board.Board;
 import jaefactory.community.dto.BoardDto;
 import jaefactory.community.service.BoardService;
-import jaefactory.community.service.CategoryService;
 import jaefactory.community.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,11 +19,9 @@ public class BoardController {
 
     private final UserService userService;
     private final BoardService boardService;
-    private final CategoryService categoryService;
 
     @GetMapping({"/","index"})
     public String home(Model model) {
-        model.addAttribute("categories",categoryService.getAllCategories());
         model.addAttribute("boards",boardService.getAllBoards());
         return "index";
     }
@@ -32,9 +29,9 @@ public class BoardController {
     @GetMapping("/board/add")
     public String addBoardGet(Model model){
         model.addAttribute("boards",boardService.getAllBoards());
+//        board.setCategory(categoryService.getCategoryById(boardDto.getCategoryId()).get());
 //        model.addAttribute("boardDto",new BoardDto());
 //        model.addAttribute("board",new Board());
-//        model.addAttribute("categories",categoryService.getAllCategories());
         return "boardAdd";
     }
 

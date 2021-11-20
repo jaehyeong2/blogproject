@@ -7,6 +7,7 @@ let index = {
 
     save: function(){
         let data = {
+            category: $("#category").val(),
             title: $("#title").val(),
             content: $("#content").val()
         };

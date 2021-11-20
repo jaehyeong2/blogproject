@@ -1,7 +1,4 @@
 package jaefactory.community.domain.board;
-
-
-import jaefactory.community.domain.category.Category;
 import jaefactory.community.domain.reply.Reply;
 import jaefactory.community.domain.user.User;
 import lombok.Getter;
@@ -32,10 +29,6 @@ public class Board {
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
-//    @JoinColumn(name = "category_id")
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Category category;
 
     @OneToMany(mappedBy = "board")
     private List<Reply> replies = new ArrayList<>();

@@ -6,7 +6,6 @@ import jaefactory.community.dto.SignUpDto;
 import jaefactory.community.dto.UserProfileDto;
 import jaefactory.community.handler.exception.CustomValidationException;
 import jaefactory.community.service.BoardService;
-import jaefactory.community.service.CategoryService;
 import jaefactory.community.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +29,6 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-    private final CategoryService categoryService;
     private final BoardService boardService;
 
     @GetMapping("/user/{id}")
