@@ -34,6 +34,14 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+    @Transactional
+    public void updateBoardById(int id, Board requestBoard){
+        Board board = boardRepository.findById(id).orElseThrow();
+        board.setTitle(requestBoard.getTitle());
+        board.setContent(requestBoard.getContent());
+        boardRepository.deleteById(id);
+    }
+
     @Transactional(readOnly = true)
     public Board getBoardById(int id){
         return boardRepository.findById(id).orElseThrow();

@@ -33,6 +33,7 @@ let index = {
             alert(JSON.stringify(error));
         });
     },
+
     deleteById: function(){
         let id = $("#id").text();
 

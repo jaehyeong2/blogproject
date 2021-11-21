@@ -2,8 +2,6 @@ package jaefactory.community.controller;
 
 
 import jaefactory.community.config.auth.PrincipalDetails;
-import jaefactory.community.domain.board.Board;
-import jaefactory.community.dto.BoardDto;
 import jaefactory.community.service.BoardService;
 import jaefactory.community.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -35,7 +31,7 @@ public class BoardController {
 //        board.setCategory(categoryService.getCategoryById(boardDto.getCategoryId()).get());
 //        model.addAttribute("boardDto",new BoardDto());
 //        model.addAttribute("board",new Board());
-        return "boardAdd";
+        return "boardSave";
     }
 
     @GetMapping("/board/detail/{id}")
@@ -44,6 +40,12 @@ public class BoardController {
         model.addAttribute("user",principalDetails);
 
         return "boardDetails";
+    }
+
+    @GetMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable int id, Model model) {
+        model.addAttribute("board", boardService.getBoardById(id));
+        return "boardUpdate";
     }
 
 //    @PostMapping("/board/add")
